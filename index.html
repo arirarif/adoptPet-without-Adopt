@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peddy</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .modal-box {
+            background-color: #FFF;
+            color: #000;
+        }
+
+        /* Spinner styles */
+        .loader {
+            border: 8px solid #f3f3f3;
+            /* Light grey */
+            border-top: 8px solid #3498db;
+            /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #spinner {
+            height: 100px;
+            /* Adjust based on your layout */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            plugins: [daisyui],
+        };
+    </script>
+</head>
+
+<body>
+
+    <section class="py-12 bg-white">
+        <div class="container mx-auto" style="width: 90%; max-width: 80%;">
+            <!-- Header Section -->
+            <header class="bg-white shadow-md">
+                <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="./images/logo.webp" alt="Peddy Logo" class="w-10 h-10">
+                        <span class="text-xl font-semibold ml-2">Peddy</span>
+                    </div>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="#" class="text-gray-600 hover:text-black">Home</a>
+                        <a href="#" class="text-gray-600 hover:text-black">Shop</a>
+                        <a href="#" class="text-gray-600 hover:text-black">Contact</a>
+                    </nav>
+                    <div class="hidden md:flex items-center">
+                        <button class="text-gray-600 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-10 1.67-10 5v1h20v-1c0-3.33-6.67-5-10-5z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Banner Section -->
+            <section class="bg-white py-12">
+                <div class="container mx-auto text-center">
+                    <p class="text-gray-500 font-medium mb-2">Bringing Families Together <span
+                            class="text-red-500">🔥</span></p>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Your Path to Adoption <br> Starts Here
+                    </h1>
+                    <p class="text-gray-600 mb-8 max-w-xl mx-auto">It is a long established fact that a reader will be
+                        distracted by the readable content of a page when looking at its layout.</p>
+                    <a href="#" class="btn btn-primary bg-[#0E7A81] text-white px-6  text-lg"
+                        onclick="document.getElementById('category-section').scrollIntoView({ behavior: 'smooth' });">View
+                        More</a>
+                </div>
+                <div class="container mx-auto mt-10">
+                    <img src="./images/pet.webp" alt="Adoption Banner"
+                        class="w-1/2 h-auto mx-auto rounded-lg shadow-md">
+                </div>
+            </section>
+
+            <!-- Category Section -->
+            <section id="category-section" class="bg-gray-50 py-12">
+                <div id="category-container" class="container mx-auto text-center">
+                    <h2 id="category-title" class="text-3xl font-semibold text-gray-800 mb-4">Adopt Your Best Friend
+                    </h2>
+                    <p id="category-subtitle" class="text-gray-600 mb-8">Explore our categories of pets available for
+                        adoption.</p>
+                    <div id="categories" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+                </div>
+            </section>
+
+            <!-- Best Deal Section -->
+            <section id="best-deal-section" class="py-12 bg-white">
+                <div id="best-deal-container" class="container mx-auto">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                        <h2 id="best-deal-title" class="text-3xl font-semibold text-gray-800 mb-4 md:mb-0">Best Deal For
+                            You</h2>
+                        <button id="sort-price-btn"
+                            class="bg-[#0E7A81] h-12 w-40 text-white rounded-lg shadow hover:bg-[#0A606B] transition-all duration-200">Sort
+                            by Price</button>
+                    </div>
+                    <div class="flex flex-col md:flex-row">
+                        <div id="pets-container" class="w-full md:w-4/5 pr-4 mx-auto">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                        </div>
+                        <div id="spinner" class="hidden">
+                            <div class="loader"></div>
+                        </div>
+                        <div class="hidden md:block w-1 border-l border-gray-200 mx-4"></div>
+                        <div id="liked-images" class="w-full md:w-1/5 mt-4 md:mt-0">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Liked Images</h3>
+                            <div class="grid grid-cols-2 gap-4"></div> <!-- Keep this div for images -->
+                        </div>
+                        <!-- <div id="liked-images" class="w-full md:w-1/5 mt-4 md:mt-0">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Liked Image</h3>
+                            <div class="grid grid-cols-2 gap-4"></div>
+                        </div> -->
+                        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                            <div class="modal-box">
+                                <h3 class="text-lg font-bold">Hello!</h3>
+                                <p class="py-4">woow modal open</p>
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <button class="btn">Close</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-start md:items-center"
+            style="width: 80%;">
+            <div class="mb-6 md:mb-0 w-full md:w-1/3 text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start mb-4">
+                    <img src="./images/logo.webp" alt="Peddy Logo" class="w-10 h-10">
+                    <span class="text-xl font-semibold ml-2">Peddy</span>
+                </div>
+                <p class="mb-2">Location: av. Washington 165, NY CA 54003</p>
+                <p class="mb-2">Phone: +31 85 964 47 25</p>
+                <p class="mb-2">Email: info@yourdomain.com</p>
+                <p class="mb-4">Openings hours: 9.00 AM - 5.00 PM</p>
+                <div class="flex justify-center md:justify-start space-x-6">
+                    <a href="#" class="hover:text-gray-300 transition-colors text-3xl"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors text-3xl text-white"><i
+                            class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors text-3xl"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors text-3xl"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="mb-6 md:mb-0 w-full md:w-1/4 text-left">
+                <h3 class="text-lg font-semibold mb-4">Useful Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-gray-300 transition-colors">Home</a></li>
+                    <li><a href="#" class="hover:text-gray-300 transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-gray-300 transition-colors">Services</a></li>
+                    <li><a href="#" class="hover:text-gray-300 transition-colors">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="mb-6 md:mb-0 w-full md:w-1/4 text-left">
+                <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+                <p class="mb-4">Stay updated with our latest news and offers.</p>
+                <form action="#" method="post">
+                    <input type="email" placeholder="Enter your email" class="border border-gray-300 p-2 w-full mb-4">
+                    <button type="submit" class="bg-[#0E7A81] text-white py-2 px-4 rounded-lg">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FontAwesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Your JavaScript -->
+    <script src="./JS/myApp.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+
+# Peddy Adoption Platform
+
+## Project Name
+**Peddy**
+
+## Description
+Peddy is a web application designed to facilitate pet adoption. It offers users a visually appealing and user-friendly interface to browse various pets available for adoption, filter by categories, and express interest in pets they like.
+
+## Key Features
+1. **Dynamic Pet Display**: Fetches and displays a list of pets with detailed information including name, breed, birth date, gender, and price.
+2. **Category Filtering**: Users can filter pets by categories, enhancing navigation and ease of use.
+3. **Like Functionality**: Users can like images of pets, which are then displayed in a dedicated section.
+4. **Sorting Options**: Pets can be sorted by price, allowing users to easily find pets within their budget.
+5. **Responsive Design**: Built with Tailwind CSS and DaisyUI, the application is fully responsive and works seamlessly on various devices.
+
+## ES6 Features Used
+- **Arrow Functions**: For concise function syntax.
+- **Template Literals**: For easier string interpolation.
+- **Destructuring Assignment**: To extract data from objects and arrays.
+- **Async/Await**: For handling asynchronous operations when fetching data.
+
+## Live Link
+[Live Demo of Peddy Adoption Platform](#) *(Please replace this with the actual link once deployed.)*
+
+## Getting Started
+1. Clone the repository to your local machine.
+2. Open the `index.html` file in your browser to view the application.
+3. Ensure you have an internet connection to fetch data from the external API.
+
+## Conclusion
+The Peddy Adoption Platform combines modern web development technologies with a clean, user-friendly design to enhance the pet adoption experience. Users can easily navigate through available pets and make informed choices.
